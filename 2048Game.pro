@@ -19,12 +19,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     GameArea.cpp \
-    GameAreaWinWidget.cpp
+    GameAreaWinWidget.cpp \
+    GameAreaEndWidget.cpp
 
 HEADERS += \
     mainwindow.h \
     GameArea.h  \
-    GameAreaWinWidget.h
+    GameAreaWinWidget.h \
+    GameAreaEndWidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
