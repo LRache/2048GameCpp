@@ -9,7 +9,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 ADD_DEFINITIONS(-D_CLion)
 
-set(CMAKE_PREFIX_PATH D://CodeFiles//Qt//5.14.2//mingw73_64)
 find_package(Qt5Widgets REQUIRED)
 
 add_executable(2048Game main.cpp mainwindow.h mainwindow.cpp GameArea.cpp GameArea.h GameAreaWinWidget.cpp GameAreaWinWidget.h)
