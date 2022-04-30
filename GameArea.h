@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QGraphicsOpacityEffect>
 #include "GameAreaWinWidget.h"
+#include "GameAreaEndWidget.h"
 
 struct NumberMoveAnimation {
     int number = 0;
@@ -37,7 +38,7 @@ public:
     QBrush cellBgBrushes[19] = {};
     QColor cellTextColors[19] = {};
 
-    int data[7][7];
+    int data[4][4];
     void clear();
 
     void start_animation();
@@ -46,6 +47,9 @@ public:
     void add_spawn_animation(int row, int column, int number);
 
     void show_win_animation();
+    void show_end_animation(int row, int column);
+    void reload_style();
+    void setTellHerText(const QString &text);
 
     int cellCount = 4;
 
@@ -158,6 +162,7 @@ private:
 
     GameAreaWinWidget *gameAreaWinWidget;
     QGraphicsOpacityEffect *gameAreaGraphicsOpacityEffect;
+    GameAreaEndWidget *gameAreaEndWidget;
 };
 
 

@@ -33,6 +33,9 @@ GameArea::GameArea() {
     gameAreaWinWidget = new GameAreaWinWidget(frameSize, frameRadius);
     gameAreaWinWidget->setParent(this);
     gameAreaGraphicsOpacityEffect = new QGraphicsOpacityEffect(this);
+    gameAreaEndWidget = new GameAreaEndWidget(frameSize, cellSep, cellSize, cellRadius, frameSep);
+    gameAreaEndWidget->setParent(this);
+    gameAreaEndWidget->hide();
 
     gameAreaWinWidget->setGraphicsEffect(gameAreaGraphicsOpacityEffect);
     gameAreaGraphicsOpacityEffect->setOpacity(0);
@@ -200,9 +203,9 @@ void GameArea::end_spawn_animation() {
 }
 
 void GameArea::output() {
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            printf("%3d ", data[i][j]);
+    for (auto & i : data) {
+        for (int j : i) {
+            printf("%3d ", j);
         }
         printf("\n");
     }
@@ -252,4 +255,16 @@ void GameArea::show_win_animation() {
     sequentialAnimationGroup->addPause(1500);
     sequentialAnimationGroup->addAnimation(animation2);
     sequentialAnimationGroup->start();
+}
+
+void GameArea::show_end_animation(int row, int column) {
+    gameAreaEndWidget->start(row, column);
+}
+
+void GameArea::reload_style() {
+    gameAreaEndWidget->load_style(cellTexts[17], cellTextFonts[17], cellBgBrushes[17], cellTextColors[17]);
+}
+
+void GameArea::setTellHerText(const QString &text) {
+    gameAreaEndWidget->tellHerText = text;
 }

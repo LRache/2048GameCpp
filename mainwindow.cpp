@@ -352,6 +352,8 @@ bool MainWindow::try_span(int fr, int fc, int tr, int tc) {
         if (first2048 and n == 11) {
             first2048 = false;
             gameArea->show_win_animation();
+        } else if (n == 17) {
+            gameArea->show_end_animation(tr, tc);
         }
         return true;
     }
@@ -648,6 +650,7 @@ void MainWindow::init_settings() {
     for (int i = 0; i < 18; ++i) {
         gameArea->cellTextColors[i + 1] = QColor(textColors[i]);
     }
+    gameArea->reload_style();
 
     QSettings textSettings("text.ini", QSettings::IniFormat);
     textSettings.setIniCodec(QTextCodec::codecForName("UTF-8"));
@@ -656,4 +659,5 @@ void MainWindow::init_settings() {
     commandGetMaxText = textSettings.value("command/getMaxText").toString();
     updateDateText = textSettings.value("update/updateDateText").toString();
     updateContentText = textSettings.value("update/updateContentText").toString();
+    gameArea->setTellHerText(textSettings.value("gamearea/tellHerText").toString());
 }
