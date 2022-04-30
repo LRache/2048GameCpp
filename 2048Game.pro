@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    GameArea.cpp
+    GameArea.cpp \
+    GameAreaWinWidget.cpp
 
 HEADERS += \
     mainwindow.h \
-    GameArea.h
+    GameArea.h  \
+    GameAreaWinWidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
