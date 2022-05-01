@@ -650,26 +650,33 @@ void MainWindow::load_settings(const QString& filepath) {
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     QStringList texts = settings.value("text/cellTexts").toStringList();
-    for (int i = 0; i < 17; ++i) {
-        gameArea->cellTexts[i + 1] = texts[i];
-    }
-
     QStringList sizes = settings.value("style/sizes").toStringList();
     QString family = settings.value("style/family").toString();
-    for (int i = 0; i < 17; ++i) {
+    QStringList cellColors = settings.value("style/cellColors").toStringList();
+    QStringList textColors = settings.value("style/textColors").toStringList();
+
+    std::cout<< texts.length();
+    std::cout << sizes.length();
+    if (texts.length() != 18 || sizes.length() != 18 || family.isEmpty() ||
+    cellColors.length() != 19 || textColors.length() != 18) {
+        QMessageBox::critical(this, "错误", "加载配置文件错误。");
+        return;
+    }
+
+    for (int i = 0; i < 18; ++i) {
+        gameArea->cellTexts[i + 1] = texts[i];
+    }
+    for (int i = 0; i < 18; ++i) {
         gameArea->cellTextFonts[i + 1] = QFont(family, sizes[i].toInt());
     }
-
-    QStringList cellColors = settings.value("style/cellColors").toStringList();
-    for (int i = 0; i < 18; ++i) {
+    for (int i = 0; i < 19; ++i) {
         gameArea->cellBgBrushes[i] = QColor(cellColors[i]);
     }
-
-    QStringList textColors = settings.value("style/textColors").toStringList();
     for (int i = 0; i < 18; ++i) {
         gameArea->cellTextColors[i + 1] = QColor(textColors[i]);
     }
     gameArea->reload_style();
+
 }
 
 void MainWindow::loadSettingsAction_triggered() {
