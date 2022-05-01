@@ -10,7 +10,7 @@
 #include <QFileDialog>
 #include <QSettings>
 #include <QTextCodec>
-#include <QDebug>
+#include <QCoreApplication>
 
 #include <iostream>
 #include <ctime>
@@ -77,15 +77,15 @@ void MainWindow::init_ui() {
     auto *widget = new QWidget;
     widget->setStyleSheet("background-color: rgb(250, 248, 239)");
 
-    nameLabel->setStyleSheet("font-family: \"Yu Gothic UI\"; font-size: 50px; color: #776e65; font-weight: bold");
-    newGameButton->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 9px; color: #f9f6f2; font-weight: bold; background-color: #8f7a66; border-radius: 8px;");
-    newGameButton->setFixedSize(60, 30);
+    nameLabel->setStyleSheet("font-family: \"Yu Gothic UI Bold\"; font-size: 50px; color: #776e65; font-weight: bold");
+    newGameButton->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 12px; color: #f9f6f2; font-weight: bold; background-color: #8f7a66; border-radius: 8px;");
+    newGameButton->setFixedSize(70, 35);
 
     auto scoreWidget = new QWidget;
     auto scoreLayout = new QVBoxLayout;
     auto scoreNameLabel = new QLabel("分数");
     scoreWidget->setStyleSheet("background-color: rgb(187, 173, 160); border-radius: 4px;");
-    scoreNameLabel->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 10px; color: #eee4da; font-weight: bold");
+    scoreNameLabel->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 12px; color: #eee4da; font-weight: bold");
     scoreNameLabel->setAlignment(Qt::AlignHCenter);
     scoreLabel->setStyleSheet("font-family: \"Segoe UI\"; font-size: 18px; color: #ffffff; font-weight: bold");
     scoreLabel->setAlignment(Qt::AlignHCenter);
@@ -94,7 +94,7 @@ void MainWindow::init_ui() {
     scoreLayout->addWidget(scoreLabel);
     scoreLayout->addStretch();
     scoreWidget->setLayout(scoreLayout);
-    scoreWidget->setFixedSize(90, 60);
+    scoreWidget->setFixedWidth(90);
 
     auto titleLayout = new QHBoxLayout;
     titleLayout->addWidget(nameLabel);
@@ -626,7 +626,7 @@ void MainWindow::set_undo_lock(bool l) {
 }
 
 void MainWindow::init_settings() {
-    QSettings settings("settings.ini", QSettings::IniFormat);
+    QSettings settings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     QStringList texts = settings.value("text/cellTexts").toStringList();
@@ -651,7 +651,7 @@ void MainWindow::init_settings() {
     }
     gameArea->reload_style();
 
-    QSettings textSettings("text.ini", QSettings::IniFormat);
+    QSettings textSettings(QCoreApplication::applicationDirPath() + "/text.ini", QSettings::IniFormat);
     textSettings.setIniCodec(QTextCodec::codecForName("UTF-8"));
     commandHelpText = textSettings.value("command/helpText").toString();
     commandLoveText = textSettings.value("command/loveText").toString();
