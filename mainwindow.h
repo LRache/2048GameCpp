@@ -38,6 +38,7 @@ public:
     QAction *undoAction;
     QAction *cmdAction;
     QAction *helpCmdAction;
+    QAction *loadSettingsAction;
     QAction *updateContentAction;
     QAction *aboutQtAction;
     QAction *aboutMeAction;
@@ -61,9 +62,12 @@ public slots:
     void save_as();
     void set_undo_lock(bool l);
 
+    void loadSettingsAction_triggered();
+
 private:
     void init_ui();
     void init_settings();
+    void load_settings(const QString& fp);
 
     void random_spawn_number();
     bool try_span(int fr, int fc, int tr, int tc);

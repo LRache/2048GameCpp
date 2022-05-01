@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     helpCmdAction = new QAction("指令帮助");
     undoAction = new QAction("撤销");
     undoLockAction = new QAction("锁定撤销");
+    loadSettingsAction = new QAction("加载配置文件");
     updateContentAction = new QAction("更新内容");
     aboutQtAction = new QAction("关于Qt");
     aboutMeAction = new QAction("关于作者");
@@ -53,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(helpCmdAction, SIGNAL(triggered()), this, SLOT(show_cmd_help()));
     connect(undoAction, SIGNAL(triggered()), this, SLOT(undo()));
     connect(undoLockAction, SIGNAL(triggered(bool)), this, SLOT(set_undo_lock(bool)));
+    connect(loadSettingsAction, SIGNAL(triggered()), this, SLOT(loadSettingsAction_triggered()));
     connect(updateContentAction, SIGNAL(triggered()), this, SLOT(show_update_content()));
     connect(aboutQtAction, SIGNAL(triggered()), this, SLOT(about_qt()));
     connect(aboutMeAction, SIGNAL(triggered()), this, SLOT(about_me()));
@@ -129,6 +131,7 @@ void MainWindow::init_ui() {
     cmdAction->setShortcut(QKeySequence("Ctrl+R"));
     undoAction->setShortcut(QKeySequence::Undo);
     undoLockAction->setCheckable(true);
+    operMenu->addAction(loadSettingsAction);
 
     auto aboutMenu = menuBar()->addMenu("关于");
     aboutMenu->addAction(updateContentAction);
@@ -630,7 +633,20 @@ void MainWindow::set_undo_lock(bool l) {
 }
 
 void MainWindow::init_settings() {
-    QSettings settings(QCoreApplication::applicationDirPath() + "/settings.ini", QSettings::IniFormat);
+    load_settings(QCoreApplication::applicationDirPath() + "/settings.ini");
+
+    QSettings textSettings(QCoreApplication::applicationDirPath() + "/text.ini", QSettings::IniFormat);
+    textSettings.setIniCodec(QTextCodec::codecForName("UTF-8"));
+    commandHelpText = textSettings.value("command/helpText").toString();
+    commandLoveText = textSettings.value("command/loveText").toString();
+    commandGetMaxText = textSettings.value("command/getMaxText").toString();
+    updateDateText = textSettings.value("update/updateDateText").toString();
+    updateContentText = textSettings.value("update/updateContentText").toString();
+    gameArea->setTellHerText(textSettings.value("gamearea/tellHerText").toString());
+}
+
+void MainWindow::load_settings(const QString& filepath) {
+    QSettings settings(filepath, QSettings::IniFormat);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     QStringList texts = settings.value("text/cellTexts").toStringList();
@@ -654,13 +670,9 @@ void MainWindow::init_settings() {
         gameArea->cellTextColors[i + 1] = QColor(textColors[i]);
     }
     gameArea->reload_style();
+}
 
-    QSettings textSettings(QCoreApplication::applicationDirPath() + "/text.ini", QSettings::IniFormat);
-    textSettings.setIniCodec(QTextCodec::codecForName("UTF-8"));
-    commandHelpText = textSettings.value("command/helpText").toString();
-    commandLoveText = textSettings.value("command/loveText").toString();
-    commandGetMaxText = textSettings.value("command/getMaxText").toString();
-    updateDateText = textSettings.value("update/updateDateText").toString();
-    updateContentText = textSettings.value("update/updateContentText").toString();
-    gameArea->setTellHerText(textSettings.value("gamearea/tellHerText").toString());
+void MainWindow::loadSettingsAction_triggered() {
+    QString filepath = QFileDialog::getOpenFileName(this, "打开", "./", "配置文件(*.ini)");
+    if (!filepath.isEmpty()) load_settings(filepath);
 }

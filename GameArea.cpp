@@ -263,6 +263,8 @@ void GameArea::play_end_animation(int row, int column) {
 
 void GameArea::reload_style() {
     gameAreaEndWidget->load_style(cellTexts[17], cellTextFonts[17], cellBgBrushes[17], cellTextColors[17]);
+    stop_animation();
+    repaint();
 }
 
 void GameArea::setTellHerText(const QString &text) {
