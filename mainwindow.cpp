@@ -77,7 +77,7 @@ void MainWindow::init_ui() {
     auto *widget = new QWidget;
     widget->setStyleSheet("background-color: rgb(250, 248, 239)");
 
-    nameLabel->setStyleSheet("font-family: \"Yu Gothic UI Semibold\"; font-size: 50px; color: #776e65; font-weight: bold");
+    nameLabel->setStyleSheet("font-family: \"Yu Gothic UI\"; font-size: 50px; color: #776e65; font-weight: bold");
     newGameButton->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 9px; color: #f9f6f2; font-weight: bold; background-color: #8f7a66; border-radius: 8px;");
     newGameButton->setFixedSize(60, 30);
 
@@ -87,7 +87,7 @@ void MainWindow::init_ui() {
     scoreWidget->setStyleSheet("background-color: rgb(187, 173, 160); border-radius: 4px;");
     scoreNameLabel->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 10px; color: #eee4da; font-weight: bold");
     scoreNameLabel->setAlignment(Qt::AlignHCenter);
-    scoreLabel->setStyleSheet("font-family: \"Microsoft JhengHei\"; font-size: 18px; color: #ffffff; font-weight: bold");
+    scoreLabel->setStyleSheet("font-family: \"Segoe UI\"; font-size: 18px; color: #ffffff; font-weight: bold");
     scoreLabel->setAlignment(Qt::AlignHCenter);
     scoreLayout->addStretch();
     scoreLayout->addWidget(scoreNameLabel);
@@ -135,7 +135,6 @@ void MainWindow::init_ui() {
     aboutMenu->addAction(aboutQtAction);
     aboutMenu->addAction(aboutMeAction);
 
-    undoCountLabel->setFont(QFont("Microsoft YaHei"));
     statusBar()->addPermanentWidget(undoCountLabel);
 }
 
