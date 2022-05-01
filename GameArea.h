@@ -54,11 +54,11 @@ public:
     int cellCount = 4;
 
 public:
-    static const int cellSize  = 120;
-    static const int cellSep   = 20;
-    static const int frameSep  = 16;
-    static const int frameRadius= 16;
-    static const int cellRadius = 4;
+    static const int cellSize  = 60;
+    static const int cellSep   = 10;
+    static const int frameSep  = 8;
+    static const int frameRadius= 8;
+    static const int cellRadius = 2;
     int frameSize = cellSize * cellCount + cellSep * (cellCount - 1) + frameSep * 2;
 
 public slots:

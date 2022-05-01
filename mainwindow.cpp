@@ -66,7 +66,7 @@ MainWindow::~MainWindow()
 = default;
 
 void MainWindow::init_ui() {
-    setFixedWidth(gameArea->frameSize + 40);
+    setFixedWidth(gameArea->frameSize + 20);
     setWindowTitle("2048Game");
 #ifdef _CLion
     setWindowIcon(QIcon("D://C++Project//2048Game//2048.ico"));
@@ -77,24 +77,24 @@ void MainWindow::init_ui() {
     auto *widget = new QWidget;
     widget->setStyleSheet("background-color: rgb(250, 248, 239)");
 
-    nameLabel->setStyleSheet("font-family: \"Yu Gothic UI Semibold\"; font-size: 100px; color: #776e65; font-weight: bold");
-    newGameButton->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 18px; color: #f9f6f2; font-weight: bold; background-color: #8f7a66; border-radius: 8px;");
-    newGameButton->setFixedSize(120, 60);
+    nameLabel->setStyleSheet("font-family: \"Yu Gothic UI Semibold\"; font-size: 50px; color: #776e65; font-weight: bold");
+    newGameButton->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 9px; color: #f9f6f2; font-weight: bold; background-color: #8f7a66; border-radius: 8px;");
+    newGameButton->setFixedSize(60, 30);
 
     auto scoreWidget = new QWidget;
     auto scoreLayout = new QVBoxLayout;
     auto scoreNameLabel = new QLabel("分数");
-    scoreWidget->setStyleSheet("background-color: rgb(187, 173, 160); border-radius: 8px;");
-    scoreNameLabel->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 20px; color: #eee4da; font-weight: bold");
+    scoreWidget->setStyleSheet("background-color: rgb(187, 173, 160); border-radius: 4px;");
+    scoreNameLabel->setStyleSheet("font-family: \"Microsoft YaHei\"; font-size: 10px; color: #eee4da; font-weight: bold");
     scoreNameLabel->setAlignment(Qt::AlignHCenter);
-    scoreLabel->setStyleSheet("font-family: \"Microsoft JhengHei\"; font-size: 36px; color: #ffffff; font-weight: bold");
+    scoreLabel->setStyleSheet("font-family: \"Microsoft JhengHei\"; font-size: 18px; color: #ffffff; font-weight: bold");
     scoreLabel->setAlignment(Qt::AlignHCenter);
     scoreLayout->addStretch();
     scoreLayout->addWidget(scoreNameLabel);
     scoreLayout->addWidget(scoreLabel);
     scoreLayout->addStretch();
     scoreWidget->setLayout(scoreLayout);
-    scoreWidget->setFixedSize(180, 120);
+    scoreWidget->setFixedSize(90, 60);
 
     auto titleLayout = new QHBoxLayout;
     titleLayout->addWidget(nameLabel);
@@ -106,7 +106,7 @@ void MainWindow::init_ui() {
     widgetMainLayout->addLayout(titleLayout);
     widgetMainLayout->addWidget(gameArea);
     widgetMainLayout->addStretch(0);
-    widgetMainLayout->setContentsMargins(20, 10, 20, 10);
+    widgetMainLayout->setContentsMargins(10, 5, 10, 5);
 
     widget->setLayout(widgetMainLayout);
     setCentralWidget(widget);
