@@ -240,7 +240,7 @@ void GameArea::stop_animation() {
     repaint();
 }
 
-void GameArea::show_win_animation() {
+void GameArea::play_win_animation() {
     auto *animation1 = new QPropertyAnimation(gameAreaGraphicsOpacityEffect, "opacity");
     animation1->setStartValue(0);
     animation1->setEndValue(1);
@@ -257,7 +257,7 @@ void GameArea::show_win_animation() {
     sequentialAnimationGroup->start();
 }
 
-void GameArea::show_end_animation(int row, int column) {
+void GameArea::play_end_animation(int row, int column) {
     gameAreaEndWidget->start(row, column);
 }
 

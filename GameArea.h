@@ -46,8 +46,8 @@ public:
     void add_move_animation(int fromRow, int fromColumn, int toRow, int toColumn, int number);
     void add_spawn_animation(int row, int column, int number);
 
-    void show_win_animation();
-    void show_end_animation(int row, int column);
+    void play_win_animation();
+    void play_end_animation(int row, int column);
     void reload_style();
     void setTellHerText(const QString &text);
 

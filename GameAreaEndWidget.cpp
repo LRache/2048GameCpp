@@ -13,7 +13,7 @@ GameAreaEndWidget::GameAreaEndWidget(int s, int csep, int cs, int cr, int fs) {
     frameSep = fs;
     rectDSize = cellSize * 4 + cellSep * 3 - cellSize;
     tellHerRect = QRect(0, cellSize * 3 + cellSep * 3, cellSize * 4 + cellSep * 3 + frameSep * 2, cellSize / 3);
-    tellHerFont = QFont("STHupo", 14);
+    tellHerFont = QFont("Microsoft YaHei", 14);
 
     exitButton = new QPushButton("退出", this);
     exitButton->setFixedSize(cellSize, cellSize / 3);
@@ -30,6 +30,7 @@ GameAreaEndWidget::GameAreaEndWidget(int s, int csep, int cs, int cr, int fs) {
 
 void GameAreaEndWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
 
     painter.setPen(Qt::NoPen);
     painter.setBrush(cellBgBrush);

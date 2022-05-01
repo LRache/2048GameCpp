@@ -350,9 +350,9 @@ bool MainWindow::try_span(int fr, int fc, int tr, int tc) {
         scoreLabel->setText(QString::number(score));
         if (first2048 and n == 11) {
             first2048 = false;
-            gameArea->show_win_animation();
+            gameArea->play_win_animation();
         } else if (n == 17) {
-            gameArea->show_end_animation(tr, tc);
+            gameArea->play_end_animation(tr, tc);
         }
         return true;
     }
@@ -489,6 +489,10 @@ void MainWindow::run_cmd() {
         QMessageBox::information(this, "最大值", commandGetMaxText);
     } else if (cmdName == "THANKS") {
         QMessageBox::information(this, "感谢", "感谢羊智凯的鼓励。");
+    } else if (cmdName == "play_end_animation") {
+        gameArea->play_end_animation(0, 0);
+    } else if (cmdName == "play_win_animation") {
+        gameArea->play_win_animation();
     }
     else QMessageBox::warning(this, "无效指令", "无效指令：" + cmdName);
 }
