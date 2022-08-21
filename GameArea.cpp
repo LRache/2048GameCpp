@@ -39,6 +39,8 @@ GameArea::GameArea() {
 
     gameAreaWinWidget->setGraphicsEffect(gameAreaGraphicsOpacityEffect);
     gameAreaGraphicsOpacityEffect->setOpacity(0);
+
+    play_end_animation(1, 1);
 }
 
 void GameArea::paintEvent(QPaintEvent *event) {
