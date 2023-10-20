@@ -16,6 +16,8 @@
 #include <ctime>
 #include <fstream>
 
+#include <QDebug>
+
 #define UNDO_COUNT_TEXT "撤销次数："+QString::number(undoCount)
 
 MainWindow::MainWindow(QWidget *parent)
@@ -655,8 +657,9 @@ void MainWindow::load_settings(const QString& filepath) {
     QStringList cellColors = settings.value("style/cellColors").toStringList();
     QStringList textColors = settings.value("style/textColors").toStringList();
 
+    qDebug() << cellColors.length() << textColors.length();
     if (texts.length() != 18 || sizes.length() != 18 || family.isEmpty() ||
-    cellColors.length() != 19 || textColors.length() != 18) {
+    cellColors.length() != 19 || textColors.length() != 19) {
         QMessageBox::critical(this, "错误", "加载配置文件错误。");
         return;
     }
