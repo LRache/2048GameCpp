@@ -7,6 +7,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.10_1/lib/cmake")
+set(CMAKE_OSX_ARCHITECTURES "x86_64")
+
 ADD_DEFINITIONS(-D_CLion)
 
 find_package(Qt5Widgets REQUIRED)

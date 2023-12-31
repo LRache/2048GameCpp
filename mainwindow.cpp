@@ -16,7 +16,9 @@
 #include <ctime>
 #include <fstream>
 
-#define UNDO_COUNT_TEXT "撤销次数："+QString::number(undoCount)
+#include <QDebug>
+
+#define UNDO_COUNT_TEXT ("撤销次数："+QString::number(undoCount))
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -168,13 +170,10 @@ void MainWindow::random_spawn_number() {
 void MainWindow::keyPressEvent(QKeyEvent *event) {
         auto key = event->key();
         if (key == Qt::Key_Up or key == Qt::Key_W) {
-            //std::cout << "UP key pressed" << std::endl;
             up();
         } else if (key == Qt::Key_Down or key == Qt::Key_S) {
-            //std::cout << "DOWN key pressed" << std::endl;
             down();
         } else if (key == Qt::Key_Left or key == Qt::Key_A) {
-            //std::cout << "LEFT key pressed" << std::endl;
             left();
         } else if (key == Qt::Key_Right or key == Qt::Key_D) {
             right();
@@ -656,7 +655,7 @@ void MainWindow::load_settings(const QString& filepath) {
     QStringList textColors = settings.value("style/textColors").toStringList();
 
     if (texts.length() != 18 || sizes.length() != 18 || family.isEmpty() ||
-    cellColors.length() != 19 || textColors.length() != 18) {
+    cellColors.length() != 19 || textColors.length() != 19) {
         QMessageBox::critical(this, "错误", "加载配置文件错误。");
         return;
     }
